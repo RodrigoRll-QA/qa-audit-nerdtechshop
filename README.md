@@ -1,9 +1,11 @@
 # 🚀 NerdTechShop - Auditoria de Qualidade & Performance
 
-![QA Status](https://img.shields.io/badge/Status-Conclu%C3%ADdo-brightgreen)
+![QA Badge](https://img.shields.io/badge/Status-Estudo-green)
+![Gherkin Badge](https://img.shields.io/badge/Language-Gherkin-orange)
+![EBAC Badge](https://img.shields.io/badge/Origin-EBAC-blue)
 ![Lighthouse Score](https://img.shields.io/badge/Lighthouse-Audited-orange)
-![Main Tool](https://img.shields.io/badge/Tool-Google%20Lighthouse-blue)
-![Role](https://img.shields.io/badge/Role-QA%20Analyst-blueviolet)
+![HTML Badge](https://img.shields.io/badge/Language-HTML-red)
+![CSS Badge](https://img.shields.io/badge/Language-CSS-blueviolet)
 
 Este projeto consiste em uma plataforma básica de e-commerce criada por mim (somente com o intuito de realizar o exercicio) focada no público entusiasta de tecnologia e hardware. O repositório contém o código-fonte da aplicação e um relatório detalhado de auditoria focado em **Acessibilidade**, **Performance** e **UX**.
 
