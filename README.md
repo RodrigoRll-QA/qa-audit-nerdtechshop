@@ -5,7 +5,7 @@
 ![Main Tool](https://img.shields.io/badge/Tool-Google%20Lighthouse-blue)
 ![Role](https://img.shields.io/badge/Role-QA%20Analyst-blueviolet)
 
-Este projeto consiste em uma plataforma de e-commerce focada no público entusiasta de tecnologia e hardware. O repositório contém o código-fonte da aplicação e um relatório detalhado de auditoria focado em **Acessibilidade**, **Performance** e **UX**.
+Este projeto consiste em uma plataforma básica de e-commerce criada por mim (somente com o entuito de realizar o exercicio) focada no público entusiasta de tecnologia e hardware. O repositório contém o código-fonte da aplicação e um relatório detalhado de auditoria focado em **Acessibilidade**, **Performance** e **UX**.
 
 ## 📋 Sobre o Projeto
 Meu site apresenta um catálogo de produtos, sistema de busca e banners promocionais. Esta análise foi realizada para identificar gargalos que prejudicam a velocidade de carregamento e impedem o uso por pessoas com necessidades especiais, simulando um cenário real de auditoria de software.
