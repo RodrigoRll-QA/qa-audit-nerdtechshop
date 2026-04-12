@@ -46,7 +46,7 @@ O site apresenta uma base estrutural sólida (semântica de títulos e botões),
 * `/Docs`: Itens usados na estrutura do site.
 * `/Evidencias`: Capturas de tela dos diagnósticos e evidências de bugs.
 * `/Reports`: Relatório completo de auditoria em PDF.
-* `/Reports`: Sug-alteralçõesviaDevTools.
+* `/Sug-alteralçõesviaDevTools`: Parte 2 do exercicío com as alterações via DevTools.
 ---
 **Autor:** [Rodrigo Lins](https://github.com/SEU-USUARIO-AQUI)  
 *Analista de QA em transição de carreira | Gestão de TI*
