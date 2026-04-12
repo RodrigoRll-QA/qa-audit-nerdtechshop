@@ -42,9 +42,9 @@ O site apresenta uma base estrutural sólida (semântica de títulos e botões),
 * **Dark Mode Nativo:** Implementação de variação de CSS para conforto visual e economia de bateria em telas OLED.
 
 ## 📂 Estrutura do Repositório
-* `/codigos`: Arquivos fonte do projeto (HTML, CSS, JS).
-* `/docs`: Relatório completo de auditoria em PDF.
-* `/evidencias`: Capturas de tela dos diagnósticos e evidências de bugs.
+* `/Códigos`: Arquivos fonte do projeto (HTML, CSS, JS).
+* `/Docs`: Relatório completo de auditoria em PDF.
+* `/Evidencias`: Capturas de tela dos diagnósticos e evidências de bugs.
 * `/Reports`: Report completo em PDF.
 
 ---
