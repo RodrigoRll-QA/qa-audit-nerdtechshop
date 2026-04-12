@@ -1,7 +1,6 @@
 # 🚀 NerdTechShop - Auditoria de Qualidade & Performance
 
 ![QA Badge](https://img.shields.io/badge/Status-Estudo-green)
-![Gherkin Badge](https://img.shields.io/badge/Language-Gherkin-orange)
 ![EBAC Badge](https://img.shields.io/badge/Origin-EBAC-blue)
 ![Lighthouse Score](https://img.shields.io/badge/Lighthouse-Audited-orange)
 ![HTML Badge](https://img.shields.io/badge/Language-HTML-red)
