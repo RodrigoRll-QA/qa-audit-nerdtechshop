@@ -1,0 +1,1029 @@
+:root {
+    /* Cores Primárias (Thematic Glow) */
+    --clr-bg-body: #0d0d10;
+    /* Cinza Quântico */
+    --clr-bg-nts: #030305;
+    /* Preto Absoluto */
+    --clr-bg-card: #16161c;
+    /* Cinza Card */
+    --clr-bg-dropdown: #1a1a22;
+    /* Cinza Dropdown */
+
+    --clr-text: #f0f0f5;
+    /* Off-White */
+    --clr-text-muted: #8c8ca0;
+    /* Cinza Muted */
+
+    --clr-primary: #00ff88;
+    /* Verde Neon NTS */
+    --clr-primary-glow: rgba(0, 255, 136, 0.6);
+    --clr-primary-active: #00cc6a;
+    /* Verde Ativo */
+
+    --clr-danger: #ff4455;
+    /* Vermelho Alerta */
+    --clr-accent: #00e0ff;
+    /* Ciano Acentuado */
+
+    /* Fontes */
+    --font-heading: 'Oxanium', sans-serif;
+    /* Nerd Tech */
+    --font-body: 'Poppins', sans-serif;
+    /* Clean Tech */
+
+    /* Espaçamentos & Raio (Consistent Design) */
+    --spacer: 20px;
+    --radius-full: 50px;
+    --radius-md: 12px;
+
+    /* Transições Sombrias */
+    --transition: 0.3s ease-in-out;
+    --box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================================================
+   RESET & CONFIGURAÇÕES GERAIS (UX Baseline)
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    /* Base */
+}
+
+body {
+    background-color: var(--clr-bg-body);
+    /* Fundo com degradê radial sutil e textura flutuante */
+    background-image:
+        radial-gradient(circle at center, rgba(13, 13, 16, 0.8) 0%, rgba(3, 3, 5, 1) 100%),
+        url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+    background-attachment: fixed;
+    color: var(--clr-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* Utilitários de Container */
+.nts-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 92%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+button {
+    font-family: inherit;
+    transition: var(--transition);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.login-popup {
+    width: 280px !important;
+}
+
+.mini-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.mini-input input {
+    width: 100%;
+    background: #000;
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 0.85rem;
+}
+
+.mini-input input:focus {
+    border-color: var(--clr-primary);
+}
+
+.login-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+}
+
+.login-links a {
+    color: var(--clr-text-muted);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.login-links a:hover {
+    color: var(--clr-primary);
+}
+
+.error-msg {
+    font-size: 0.7rem;
+    min-height: 15px;
+}
+
+/* Hover effect para ambos */
+.nts-cart-container:hover .nts-cart-dropdown {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Utilitários de Texto */
+.highlight {
+    color: var(--clr-primary);
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+}
+
+/* ==========================================================================
+   LAYOUT PRINCIPAL (CSS Grid)
+   ========================================================================= */
+.nts-viewport {
+    background-color: var(--clr-bg-nts);
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    /* Header, Hero, Content, Footer */
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.9);
+    border-left: 1px solid rgba(255, 255, 255, 0.03);
+    border-right: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* ==========================================================================
+   COMPONENTES
+   ========================================================================== */
+
+/* --- COMPONENTE: HEADER & BARRA DE BUSCA --- */
+.nts-header {
+    background-color: rgba(3, 3, 5, 0.9);
+    /* Glassmorphism sutil */
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Brand */
+.nts-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nts-logo {
+    width: 55px;
+    height: auto;
+    filter: drop-shadow(0 0 5px var(--clr-primary));
+}
+
+.nts-brand-name {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.nts-category-section {
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nts-category-section:last-child {
+    border-bottom: none;
+}
+
+/* Ajuste fino no Grid para evitar quebras em telas médias */
+.nts-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+/* Correção de Overflow no Dropdown do Carrinho */
+.cart-dropdown-items::-webkit-scrollbar {
+    width: 4px;
+}
+
+.cart-dropdown-items::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.cart-dropdown-items::-webkit-scrollbar-thumb {
+    background: var(--clr-primary);
+    border-radius: 10px;
+}
+
+/* Estilização extra para Badges de Colecionáveis */
+.badge-limited {
+    background-color: #ff9900;
+    color: #000;
+}
+
+/* Actions Area */
+.nts-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Navigation */
+.nts-nav ul {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.nts-nav a {
+    position: relative;
+    padding: 5px 0;
+}
+
+.nts-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--clr-primary);
+    transition: width 0.3s;
+}
+
+.nts-nav a:hover {
+    color: var(--clr-primary);
+}
+
+.nts-nav a:hover::after {
+    width: 100%;
+}
+
+/* User Block (Search, Login, Cart) */
+.nts-user-block {
+    display: flex;
+    align-items: center;
+    gap: var(--spacer);
+}
+
+/* Barra de Busca v2.0 */
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#nts-search {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--clr-text);
+    padding: 8px 15px 8px 35px;
+    /* Padding left para ícone */
+    border-radius: var(--radius-full);
+    outline: none;
+    width: 180px;
+    font-size: 0.8rem;
+    transition: var(--transition);
+}
+
+#nts-search:focus {
+    width: 220px;
+    border-color: var(--clr-primary);
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px var(--clr-primary-glow);
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.9rem;
+}
+
+/* Botões Globais */
+.nts-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* Botãooutline */
+.nts-btn-outline {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    color: var(--clr-text);
+    padding: 8px 18px;
+}
+
+.nts-btn-outline:hover {
+    border-color: var(--clr-primary);
+    color: var(--clr-primary);
+    filter: drop-shadow(0 0 5px var(--clr-primary));
+}
+
+/* Botão Login Específico */
+.nts-btn-login {
+    border-color: var(--clr-accent);
+    color: var(--clr-accent);
+}
+
+.nts-btn-login:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 224, 255, 0.1);
+}
+
+/* --- COMPONENTE: CART DROPDOWN v2.0 --- */
+.nts-cart-container {
+    position: relative;
+}
+
+.nts-btn-cart {
+    background-color: transparent;
+    color: var(--clr-danger);
+    font-size: 1.2rem;
+    padding: 8px;
+    position: relative;
+}
+
+.nts-btn-cart:hover {
+    filter: drop-shadow(0 0 10px var(--clr-danger));
+}
+
+.nts-cart-counter {
+    background: var(--clr-danger);
+    color: var(--clr-bg-body);
+    border-radius: var(--radius-full);
+    padding: 2px 6px;
+    font-size: 10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-family: var(--font-heading);
+}
+
+/* Dropdown */
+.nts-cart-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background-color: var(--clr-bg-dropdown);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    width: 280px;
+    padding: var(--spacer);
+    border-radius: var(--radius-md);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+
+    /* Estado Inicial: Escondido */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s, transform 0.3s, visibility 0s 0.3s;
+}
+
+.nts-cart-dropdown.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.3s, transform 0.3s, visibility 0s;
+}
+
+/* Área de "Segurança" para Hover */
+.nts-cart-dropdown::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    right: 0;
+    width: 100%;
+    height: 15px;
+}
+
+.cart-dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding-bottom: 10px;
+}
+
+.cart-dropdown-header h3 {
+    font-size: 1rem;
+}
+
+.price-total {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--clr-primary);
+}
+
+.cart-dropdown-items {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.cart-dropdown-items p.empty-cart {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    padding: 10px 0;
+}
+
+/* Item Adicionado Moderno */
+.cart-dropdown-items .dropdown-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.01);
+}
+
+.cart-dropdown-items .dropdown-item .name {
+    color: var(--clr-text-muted);
+}
+
+.cart-dropdown-items .dropdown-item .price {
+    font-weight: 600;
+    color: var(--clr-text);
+}
+
+/* --- COMPONENTE: HERO BANNER (Moderno) --- */
+.nts-hero {
+    margin: var(--spacer) 0;
+}
+
+. hero-wrapper {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.nts-hero-figure {
+    position: relative;
+    width: 100%;
+    height: 350px;
+}
+
+.nts-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+    transition: transform 5s ease-out;
+    /* Efeito de Ken Burns sutil no hover */
+}
+
+.hero-wrapper:hover .nts-hero-img {
+    transform: scale(1.05);
+}
+
+.nts-hero-caption {
+    position: absolute;
+    bottom: var(--spacer);
+    left: var(--spacer);
+    max-width: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    /* Fundo suave */
+    backdrop-filter: blur(5px);
+    padding: 15px;
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--clr-primary);
+}
+
+.nts-hero-caption .subtitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--clr-text-muted);
+}
+
+.nts-hero-caption .title {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+}
+
+.nts-hero-caption .description {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Estilos do Slider */
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    /* Ajuste a altura conforme desejar */
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.nts-slider {
+    display: flex;
+    width: 300%;
+    /* 100% para cada slide (são 3) */
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nts-slide {
+    width: 100%;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.nts-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+    /* Melhora a leitura do texto */
+}
+
+/* Reutilizando suas classes de legenda, mas fixando-as sobre o slide */
+.nts-slide .nts-hero-caption {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    z-index: 2;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease 0.3s;
+}
+
+.nts-slide.active .nts-hero-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Botões de Navegação */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 255, 136, 0.2);
+    border: 1px solid #00ff88;
+    color: #00ff88;
+    font-size: 24px;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+.slider-btn:hover {
+    background: #00ff88;
+    color: #000;
+}
+
+.prev {
+    left: 20px;
+}
+
+.next {
+    right: 20px;
+}
+
+/* --- COMPONENTE: MAIN & VITRINE v2.0 --- */
+.vitrine-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+}
+
+.section-subtitle {
+    font-size: 0.9rem;
+    color: var(--clr-text-muted);
+}
+
+.nts-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    /* Responsivo sutil */
+    gap: 25px;
+    padding: var(--spacer) 0;
+}
+
+/* PRODUCT CARD COMPONENT v2.0 */
+.nts-product-card {
+    background-color: var(--clr-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-md);
+    padding: var(--spacer);
+    transition: var(--transition);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.nts-product-card:hover {
+    border-color: var(--clr-primary);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.1);
+    /* Glow Sutil */
+}
+
+.product-card-figure {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.01);
+    /* Fundo suave se PNG não tiver alpha */
+    padding: 10px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.product-card-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Mantém proporção da PNG */
+}
+
+/* Badges de Produto */
+.product-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 9px;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--clr-bg-nts);
+}
+
+.badge-new {
+    background-color: var(--clr-primary);
+}
+
+.badge-featured {
+    background-color: var(--clr-accent);
+}
+
+.product-card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.product-name {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: var(--clr-text);
+}
+
+.product-desc {
+    font-size: 0.8rem;
+    color: var(--clr-text-muted);
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.product-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--clr-text);
+}
+
+/* Botão de Adicionar Smar */
+.nts-btn-add {
+    background-color: transparent;
+    border: 1px solid var(--clr-primary);
+    color: var(--clr-primary);
+    padding: 6px 15px;
+    font-size: 0.7rem;
+}
+
+.nts-btn-add:hover {
+    background-color: var(--clr-primary);
+    color: var(--clr-bg-nts);
+    box-shadow: 0 0 10px var(--clr-primary-glow);
+}
+
+/* --- COMPONENTE: FOOTER v2.0 --- */
+.nts-footer {
+    background-color: #050508;
+    /* Mais escuro */
+    margin-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.footer-wrapper {
+    padding: 40px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-brand {
+    max-width: 300px;
+}
+
+.nts-brand-name-footer {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.footer-tagline {
+    font-size: 0.8rem;
+    color: var(--clr-text-muted);
+}
+
+.footer-links {
+    display: flex;
+    gap: 40px;
+}
+
+.footer-col h4 {
+    color: var(--clr-primary);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-col a,
+.footer-col p {
+    font-size: 0.8rem;
+    color: var(--clr-text-muted);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.footer-col a:hover {
+    color: var(--clr-primary);
+}
+
+.nts-footer-bottom {
+    background-color: #030305;
+    padding: 15px 0;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.nts-checkout-main {
+    padding: 40px 0;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 30px;
+    align-items: start;
+}
+
+.page-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Cards de Checkout */
+.checkout-card {
+    background: var(--clr-bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-md);
+    margin-bottom: 25px;
+    padding: 25px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.step-number {
+    background: var(--clr-primary);
+    color: var(--clr-bg-nts);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 800;
+    font-family: var(--font-heading);
+}
+
+/* Formulário em Grid */
+.grid-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.input-group.full {
+    grid-column: span 2;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--clr-text-muted);
+    margin-bottom: 8px;
+}
+
+.input-group input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+    padding: 12px;
+    border-radius: 8px;
+    color: #fff;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: var(--clr-primary);
+}
+
+/* Opções de Pagamento */
+.payment-methods {
+    display: flex;
+    gap: 15px;
+}
+
+.payment-option {
+    flex: 1;
+    cursor: pointer;
+}
+
+.payment-option input {
+    display: none;
+}
+
+.opt-content {
+    border: 1px solid #333;
+    padding: 20px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+}
+
+.payment-option input:checked+.opt-content {
+    border-color: var(--clr-primary);
+    background: rgba(0, 255, 136, 0.05);
+    box-shadow: 0 0 15px var(--clr-primary-glow);
+}
+
+/* Sidebar Resumo */
+.summary-card {
+    background: var(--clr-bg-dropdown);
+    padding: 25px;
+    border-radius: var(--radius-md);
+    position: sticky;
+    top: 100px;
+    border: 1px solid var(--clr-primary);
+}
+
+.summary-totals {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.summary-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.summary-items .total-row {
+    font-size: 0.85rem;
+    color: var(--clr-text-muted);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.empty-msg {
+    text-align: center;
+    padding: 20px;
+    color: var(--clr-danger);
+    font-style: italic;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+.main-total {
+    font-size: 1.3rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+    color: #fff;
+    margin-top: 15px;
+}
+
+.full-width {
+    width: 100%;
+    justify-content: center;
+    padding: 15px;
+    margin-top: 20px;
+    background: var(--clr-primary);
+    color: #000;
+}
+
+.secure-badge {
+    font-size: 0.8rem;
+    color: var(--clr-primary);
+    border: 1px solid var(--clr-primary);
+    padding: 5px 15px;
+    border-radius: var(--radius-full);
+}
+
+/* Responsividade Básica */
+@media (max-width: 900px) {
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-sidebar {
+        position: static;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Ajuste de margem para compensar o header ao rolar */
+section.nts-category-container {
+    scroll-margin-top: 120px;
+}

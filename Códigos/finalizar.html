@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NerdTechShop | Finalizar Upgrade</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="checkout-page">
+
+    <div class="nts-viewport">
+        <header class="nts-header checkout-header">
+            <div class="nts-container header-wrapper">
+                <a href="index.html" class="nts-brand">
+                    <img src="../Docs/logo.png" alt="Logo" class="nts-logo">
+                    <span class="nts-brand-name">Nerd<span class="highlight">Tech</span>Shop</span>
+                </a>
+                <div class="secure-badge">
+                    <i class="fas fa-lock"></i> Ambiente 100% Seguro
+                </div>
+            </div>
+        </header>
+
+        <main class="nts-container nts-checkout-main">
+            <div class="checkout-grid">
+                
+                <section class="checkout-forms">
+                    <h2 class="page-title"><i class="fas fa-rocket highlight"></i> Checkout de Elite</h2>
+
+                    <div class="checkout-card">
+                        <div class="card-header">
+                            <span class="step-number">1</span>
+                            <h3>Identificação & Entrega</h3>
+                        </div>
+                        <div class="card-body grid-form">
+                            <div class="input-group full">
+                                <label>Nome Completo</label>
+                                <input type="text" placeholder="Ex: Rodrigo Lins Lopes">
+                            </div>
+                            <div class="input-group">
+                                <label>E-mail</label>
+                                <input type="email" placeholder="seu@email.com">
+                            </div>
+                            <div class="input-group">
+                                <label>CEP</label>
+                                <input type="text" placeholder="00000-000">
+                            </div>
+                            <div class="input-group full">
+                                <label>Endereço de Entrega</label>
+                                <input type="text" placeholder="Rua, Número, Complemento">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="checkout-card">
+                        <div class="card-header">
+                            <span class="step-number">2</span>
+                            <h3>Método de Pagamento</h3>
+                        </div>
+                        <div class="payment-methods">
+                            <label class="payment-option active">
+                                <input type="radio" name="pay" checked>
+                                <div class="opt-content">
+                                    <i class="fas fa-qrcode"></i>
+                                    <span>Pix <small>(Aprovação Instantânea)</small></span>
+                                </div>
+                            </label>
+                            <label class="payment-option">
+                                <input type="radio" name="pay">
+                                <div class="opt-content">
+                                    <i class="fas fa-credit-card"></i>
+                                    <span>Cartão de Crédito</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+                <aside class="checkout-sidebar">
+                    <div class="summary-card">
+                        <h3>Resumo do Pedido</h3>
+                        <div class="summary-items" id="checkout-items-list">
+                            <p class="empty-msg">Nenhum item selecionado.</p>
+                        </div>
+                        
+                        <div class="summary-totals">
+                            <div class="total-row">
+                                <span>Subtotal</span>
+                                <span id="subtotal">R$ 0,00</span>
+                            </div>
+                            <div class="total-row">
+                                <span>Frete (Belford Roxo)</span>
+                                <span class="highlight">Grátis</span>
+                            </div>
+                            <hr>
+                            <div class="total-row main-total">
+                                <span>Total</span>
+                                <span id="grand-total">R$ 0,00</span>
+                            </div>
+                        </div>
+
+                        <button class="nts-btn nts-btn-primary full-width" onclick="processarCompra()">
+                            Confirmar Upgrade <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </aside>
+
+            </div>
+        </main>
+
+        <footer class="nts-footer-bottom nts-container">
+            <p>&copy; 2026 NerdTechShop Enterprise. Checkout Seguro via NTS-Vault.</p>
+        </footer>
+    </div>
+
+    <script>
+    function carregarCheckout() {
+    const listaUI = document.getElementById('checkout-items-list');
+    const subtotalUI = document.getElementById('subtotal');
+    const totalUI = document.getElementById('grand-total');
+    
+    // Recupera os itens salvos
+    let carrinho = JSON.parse(localStorage.getItem('nts_carrinho')) || [];
+    
+    if (carrinho.length === 0) {
+        listaUI.innerHTML = '<p class="empty-msg">Seu inventário está vazio.</p>';
+        return;
+    }
+
+    listaUI.innerHTML = ''; // Limpa o "vazio"
+    let soma = 0;
+
+    carrinho.forEach(item => {
+        soma += item.preco;
+        const div = document.createElement('div');
+        div.className = 'total-row';
+        div.innerHTML = `<span>${item.nome}</span> <span>R$ ${item.preco.toFixed(2)}</span>`;
+        listaUI.appendChild(div);
+    });
+
+    subtotalUI.innerText = `R$ ${soma.toFixed(2)}`;
+    totalUI.innerText = `R$ ${soma.toFixed(2)}`;
+}
+
+// Limpa o carrinho após a compra
+function processarCompra() {
+    alert('🚀 Upgrade confirmado! Hardware enviado para sua base.');
+    localStorage.removeItem('nts_carrinho'); // Limpa o banco
+    location.href = 'index.html';
+}
+
+// Executa ao abrir a página
+window.onload = carregarCheckout;
+
+    </script>
+</body>
+</html>

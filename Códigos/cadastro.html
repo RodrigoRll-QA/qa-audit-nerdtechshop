@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NerdTechShop | Cadastro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background: #050505; color: #fff; font-family: 'Poppins', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .auth-card { width: 100%; max-width: 380px; padding: 40px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; font-size: 11px; color: #00ff88; margin-bottom: 8px; letter-spacing: 1px; }
+        .input-group input { width: 100%; padding: 12px; background: #000; border: 1px solid #333; color: #fff; border-radius: 8px; box-sizing: border-box; }
+        .input-group input:focus { border-color: #00ff88; outline: none; }
+    </style>
+</head>
+<body>
+
+    <div class="auth-card">
+        <h2 style="font-family: 'Oxanium'; font-size: 2rem;">Novo <span style="color: #00ff88;">Recruta</span></h2>
+        <p style="color: #666; font-size: 13px; margin-bottom: 30px;">Crie sua ID NerdTechShop</p>
+
+        <form id="form-cadastro">
+            <div class="input-group">
+                <label>NOME COMPLETO</label>
+                <input type="text" id="reg-nome" placeholder="Rodrigo Lins Lopes" required>
+            </div>
+            <div class="input-group">
+                <label>E-MAIL</label>
+                <input type="email" id="reg-email" placeholder="seu@email.com" required>
+            </div>
+            <div class="input-group">
+                <label>SENHA (MIN. 6 DIGITOS)</label>
+                <input type="password" id="reg-pass" placeholder="••••••" required minlength="6">
+            </div>
+            
+            <button type="submit" class="nts-btn-add" style="width: 100%; padding: 15px; cursor: pointer; border-radius: 8px;">
+                ATIVAR PROTOCOLO
+            </button>
+        </form>
+
+        <p style="font-size: 12px; margin-top: 25px; color: #555;">
+            Já é um de nós? <a href="index.html" style="color: #00ff88; text-decoration: none;">Voltar ao Login</a>
+        </p>
+    </div>
+
+    <script>
+        document.getElementById('form-cadastro').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('reg-nome').value;
+            // Persiste a sessão para a Home reconhecer
+            localStorage.setItem('nts_session', JSON.stringify({user: nome, active: true}));
+            alert(`Bem-vindo à equipe, ${nome}!`);
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

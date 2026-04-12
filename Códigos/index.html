@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NerdTechShop | Upgrade Your Setup | Home</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* Estilos adicionais para as Caixas Grandes (Containers) */
+        .nts-category-container {
+            background: rgba(10, 10, 10, 0.8);
+            border: 1px solid #1a1a1a;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 80px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nts-category-container:hover {
+            border-color: #00ff88;
+            transform: translateY(-5px);
+        }
+
+        /* Efeito de brilho no topo de cada caixa */
+        .nts-category-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00ff88, transparent);
+        }
+
+        .category-banner img {
+            transition: transform 0.5s ease;
+        }
+
+        .nts-category-container:hover .category-banner img {
+            transform: scale(1.02);
+        }
+
+        /* Ajuste fino na navegação para compensar o header fixo se houver */
+        section {
+            scroll-margin-top: 100px;
+        }
+
+        /* --- NOVOS ESTILOS: BUSCA E HOVER (SEM REMOVER NADA) --- */
+        .search-wrapper { position: relative; }
+
+        #search-results-dropdown {
+            position: absolute;
+            top: 115%;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.98);
+            border: 1px solid #00ff88;
+            border-radius: 10px;
+            display: none;
+            z-index: 1000;
+            max-height: 350px;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
+        }
+
+        .search-result-item {
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #1a1a1a;
+            transition: background 0.3s;
+        }
+
+        .search-result-item:hover { background: rgba(0, 255, 136, 0.1); }
+
+        .search-result-item img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            border-radius: 5px;
+            background: #000;
+        }
+
+        /* Efeito Zoom e Descrição no Hover dos Cards */
+        .nts-product-card {
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .nts-product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            z-index: 10;
+        }
+
+        .product-card-img {
+            transition: transform 0.5s ease;
+        }
+
+        .nts-product-card:hover .product-card-img {
+            transform: scale(1.15);
+        }
+
+        .nts-product-card::after {
+            content: "SISTEMA NERDTECH: CLIQUE PARA ADD";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #00ff88;
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            text-align: center;
+            padding: 5px 0;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .nts-product-card:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nts-viewport">
+
+        <header class="nts-header">
+            <div class="nts-container header-wrapper">
+                
+                <a href="index.html" class="nts-brand" aria-label="NerdTechShop Home">
+                    <img src="../Docs/logo.png" alt="NerdTechShop Glow Logo" class="nts-logo">
+                    <span class="nts-brand-name">Nerd<span class="highlight">Tech</span>Shop</span>
+                </a>
+
+                <div class="nts-header-actions">
+                    <nav class="nts-nav" aria-label="Navegação Principal">
+                        <ul>
+                            <li><a href="#vitrine">Periféricos</a></li>
+                            <li><a href="#vitrine-hardware">Hardware</a></li>
+                            <li><a href="#colecionaveis">Colecionáveis</a></li>
+                        </ul>
+                    </nav>
+
+                    <div class="nts-user-block">
+                        <div class="search-wrapper">
+                            <input type="search" id="nts-search" placeholder="Buscar hardware..." aria-label="Campo de busca" autocomplete="off">
+                            <i class="fas fa-search search-icon"></i>
+                            <div id="search-results-dropdown"></div>
+                        </div>
+                        
+                        <div class="nts-cart-container">
+                            <button class="nts-btn nts-btn-outline nts-btn-login" id="login-trigger" aria-haspopup="true">
+                                <i class="fa-solid fa-user-astronaut"></i> <span id="user-status">Login</span>
+                            </button>
+
+                            <div class="nts-cart-dropdown" id="login-dropdown" style="width: 280px; padding: 20px;">
+                                <div class="cart-dropdown-header">
+                                    <h3>Acesso Recruta</h3>
+                                </div>
+                                <form id="mini-login-form" style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                                    <input type="email" id="login-email" placeholder="E-mail de acesso" 
+                                           style="width: 100%; background: #000; border: 1px solid #333; padding: 10px; border-radius: 5px; color: #fff;">
+                                    <input type="password" id="login-pass" placeholder="Senha" 
+                                           style="width: 100%; background: #000; border: 1px solid #333; padding: 10px; border-radius: 5px; color: #fff;">
+                                    
+                                    <div id="login-error" style="color: #ff4d4d; font-size: 11px; min-height: 15px;"></div>
+                                    
+                                    <button type="submit" class="nts-btn-add" style="width: 100%; padding: 10px;">Entrar no Sistema</button>
+                                </form>
+                                
+                                <div style="display: flex; justify-content: space-between; margin-top: 15px; font-size: 11px;">
+                                    <a href="cadastro.html" class="highlight" style="text-decoration: none;">Cadastrar-se</a>
+                                    <a href="javascript:void(0)" onclick="recoveryProtocol()" style="color: #888; text-decoration: none;">Esqueceu a senha?</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="nts-cart-container">
+                            <button class="nts-btn nts-btn-cart" id="nts-cart-trigger" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="nts-cart-counter" id="cart-count">0</span>
+                            </button>
+                            
+                            <div class="nts-cart-dropdown" id="nts-cart-dropdown">
+                                <div class="cart-dropdown-header">
+                                    <h3>Meu Setup</h3>
+                                    <span class="price-total">R$ <span id="cart-total-dropdown">0,00</span></span>
+                                </div>
+                                <div class="cart-dropdown-items" id="popup-items">
+                                    <p class="empty-cart">Seu carrinho está vazio, recruta.</p>
+                                </div>
+                                <div class="cart-dropdown-actions">
+                                    <button class="nts-btn nts-btn-outline nts-btn-sm" onclick="location.href='finalizar.html'">Finalizar Upgrade</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="nts-hero">
+            <div class="slider-container">
+                <div class="nts-slider" id="main-slider">
+                    
+                    <div class="nts-slide active">
+                        <img src="../Docs/wild.png" alt="Wild Rift Arena">
+                        <div class="nts-hero-caption">
+                            <span class="subtitle">Prepare-se para o Upgrade</span>
+                            <h2 class="title">Arena NerdTechShop</h2>
+                            <p class="description">Equipamentos de elite para dominar a Grande Final de E-Sports.</p>
+                        </div>
+                    </div>
+
+                    <div class="nts-slide">
+                        <img src="../Docs/filme.png" alt="Cinema Experience">
+                        <div class="nts-hero-caption">
+                            <span class="subtitle">Imersão Total</span>
+                            <h2 class="title">Cine NerdTech</h2>
+                            <p class="description">Sinta cada detalhe com a melhor qualidade de som e imagem.</p>
+                        </div>
+                    </div>
+
+                    <div class="nts-slide">
+                        <img src="../Docs/tesouro.png" alt="Loot Especial">
+                        <div class="nts-hero-caption">
+                            <span class="subtitle">Itens Lendários</span>
+                            <h2 class="title">O Tesouro Geek</h2>
+                            <p class="description">Descubra relíquias exclusivas que só um verdadeiro mestre possui.</p>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="slider-btn next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+        </section>
+
+<main class="nts-main nts-container">
+
+    <section id="vitrine" class="nts-category-container">
+        <figure class="category-banner">
+            <img src="../Docs/perifericos1.png.png" alt="Periféricos de Elite" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+        </figure>
+
+        <header class="vitrine-header">
+            <h2 class="section-title">Drop Semanal: Periféricos de Elite</h2>
+            <p class="section-subtitle">Acesso exclusivo aos melhores periféricos.</p>
+        </header>
+
+        <div class="nts-product-grid">
+            <article class="nts-product-card">
+                <figure class="product-card-figure">
+                    <img src="../Docs/mouse.png" alt="Mouse" class="product-card-img">
+                    <span class="product-badge badge-new">Drop</span>
+                </figure>
+                <div class="product-card-body">
+                    <h3 class="product-name">Razer Viper V3 Pro</h3>
+                    <p class="product-desc">Ultraleve, Sensor 30K DPI, 8KHz.</p>
+                    <div class="product-meta">
+                        <span class="product-price">R$ 50,00</span> 
+                        <button class="nts-btn nts-btn-sm nts-btn-add" onclick="nts_cart_add('Razer Viper V3 Pro', 50)">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="nts-product-card">
+                <figure class="product-card-figure">
+                    <img src="../Docs/teclado.png" alt="Teclado" class="product-card-img">
+                </figure>
+                <div class="product-card-body">
+                    <h3 class="product-name">Keychron K2 Pro</h3>
+                    <p class="product-desc">Mecânico, Customizável, Alumínio.</p>
+                    <div class="product-meta">
+                        <span class="product-price">R$ 300,00</span>
+                        <button class="nts-btn nts-btn-sm nts-btn-add" onclick="nts_cart_add('Keychron K2 Pro', 300)">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="nts-product-card">
+                <figure class="product-card-figure">
+                    <img src="../Docs/monitor.png" alt="Monitor" class="product-card-img">
+                    <span class="product-badge badge-featured">Destaque</span>
+                </figure>
+                <div class="product-card-body">
+                    <h3 class="product-name">Samsung Odyssey G9 49"</h3>
+                    <p class="product-desc">QLED, 240Hz, 1ms, Curvatura 1000R.</p>
+                    <div class="product-meta">
+                        <span class="product-price">R$ 1.800,00</span>
+                        <button class="nts-btn nts-btn-sm nts-btn-add" onclick="nts_cart_add('Samsung Odyssey G9 49\'', 1800)">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="vitrine-hardware" class="nts-category-container">
+        <figure class="category-banner">
+            <img src="../Docs/hardware1.png.png" alt="Hardware de Elite" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+        </figure>
+
+        <header class="vitrine-header">
+            <h2 class="section-title">Drop Semanal: Hardware de Elite</h2>
+            <p class="section-subtitle">Aumente o poder de processamento do seu setup.</p>
+        </header>
+
+        <div class="nts-product-grid">
+            <article class="nts-product-card">
+                <figure class="product-card-figure">
+                    <img src="../Docs/ram.png" alt="ram" class="product-card-img">
+                    <span class="product-badge badge-new">Drop</span>
+                </figure>
+                <div class="product-card-body">
+                    <h3 class="product-name">Memória RAM RGB 32GB</h3>
+                    <p class="product-desc">DDR5, 6000MHz, Latência Ultra-baixa.</p>
+                    <div class="product-meta">
+                        <span class="product-price">R$ 250,00</span> 
+                        <button class="nts-btn nts-btn-sm nts-btn-add" onclick="nts_cart_add('Memória RAM 32GB', 250)">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="nts-product-card">
+                <figure class="product-card-figure">
+                    <img src="../Docs/mae.png" alt="Placa Mãe" class="product-card-img">
+                </figure>
+                <div class="product-card-body">
+                    <h3 class="product-name">Placa Mãe Z790 Pro</h3>
+                    <p class="product-desc">Suporte Next-Gen, Wi-Fi 6E, PCIe 5.0.</p>
+                    <div class="product-meta">
+                        <span class="product-price">R$ 1.200,00</span>
+                        <button class="nts-btn nts-btn-sm nts-btn-add" onclick="nts_cart_add('Placa Mãe Z790', 1200)">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="nts-product-card">
+                <figure class="product-card-figure">
+                    <img src="../Docs/ssd.png" alt="SSD" class="product-card-img">
+                    <span class="product-badge badge-featured">Destaque</span>
+                </figure>
+                <div class="product-card-body">
+                    <h3 class="product-name">SSD NVMe 2TB Gen4</h3>
+                    <p class="product-desc">Leitura 7500MB/s, Escrita 6800MB/s.</p>
+                    <div class="product-meta">
+                        <span class="product-price">R$ 650,00</span>
+                        <button class="nts-btn nts-btn-sm nts-btn-add" onclick="nts_cart_add('SSD NVMe 2TB', 650)">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <section id="colecionaveis" class="nts-category-container">
+        <figure class="category-banner">
+            <img src="../Docs/colecionaveis1.png.png" alt="Sala de Troféus" style="width: 100%; border-radius: 10px; margin-bottom: 20px;">
+        </figure>
+
+        <header class="vitrine-header">
+            <h2 class="section-title">Sala de Troféus: Colecionáveis</h2>
+            <p class="section-subtitle">Edições limitadas para o seu santuário nerd.</p>
+        </header>
+
+        <div class="nts-product-grid">
+            <article class="nts-product-card">
+                <figure class="product-card-figure">
+                    <img src="../Docs/luffy.png" alt="Action Figure" class="product-card-img">
+                    <span class="product-badge badge-featured">Limited</span>
+                </figure>
+                <div class="product-card-body">
+                    <h3 class="product-name">Luffy Gear 5</h3>
+                    <p class="product-desc">Edição de colecionador, 35cm, Pintura manual.</p>
+                    <div class="product-meta">
+                        <span class="product-price">R$ 450,00</span>
+                        <button class="nts-btn nts-btn-sm nts-btn-add" onclick="nts_cart_add('Luffy Gear 5', 450)">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="nts-product-card">
+                <figure class="product-card-figure">
+                    <img src="../Docs/mugiwaras.png" alt="mugiwaras" class="product-card-img">
+                </figure>
+                <div class="product-card-body">
+                    <h3 class="product-name">Pack Mugiwaras</h3>
+                    <p class="product-desc">Edição de colecionador completa.</p>
+                    <div class="product-meta">
+                        <span class="product-price">R$ 120,00</span>
+                        <button class="nts-btn nts-btn-sm nts-btn-add" onclick="nts_cart_add('Pack Mugiwaras', 120)">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="nts-product-card">
+                <figure class="product-card-figure">
+                    <img src="../Docs/boneco.png" alt="Action Figure" class="product-card-img">
+                    <span class="product-badge badge-featured">Limited</span>
+                </figure>
+                <div class="product-card-body">
+                    <h3 class="product-name">Estatueta Premium</h3>
+                    <p class="product-desc">Edição de colecionador, 35cm, Pintura manual.</p>
+                    <div class="product-meta">
+                        <span class="product-price">R$ 300,00</span>
+                        <button class="nts-btn nts-btn-sm nts-btn-add" onclick="nts_cart_add('Estatueta Premium', 300)">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>    
+    </section>
+</main>
+
+        <footer class="nts-footer">
+            <div class="nts-container footer-wrapper">
+                <div class="footer-brand">
+                    <span class="nts-brand-name-footer">Nerd<span class="highlight">Tech</span>Shop</span>
+                    <p class="footer-tagline">Belford Roxo - Terra 616</p>
+                </div>
+            </div>
+            <div class="nts-footer-bottom nts-container">
+                <p>&copy; 2026 NerdTechShop Enterprise. Todos os direitos reservados. Não esqueça do save point.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        // DOM Elements
+        const cartDropdown = document.getElementById('nts-cart-dropdown');
+        const cartTrigger = document.getElementById('nts-cart-trigger');
+        const loginDropdown = document.getElementById('login-dropdown');
+        const loginTrigger = document.getElementById('login-trigger');
+
+        // 1. Funções do Carrinho
+        function nts_cart_add(nome, preco) {
+            let carrinho = JSON.parse(localStorage.getItem('nts_carrinho')) || [];
+            carrinho.push({ nome: nome, preco: preco });
+            localStorage.setItem('nts_carrinho', JSON.stringify(carrinho));
+            atualizarInterfaceCarrinho();
+        }
+
+        function atualizarInterfaceCarrinho() {
+            let carrinho = JSON.parse(localStorage.getItem('nts_carrinho')) || [];
+            document.getElementById('cart-count').innerText = carrinho.length;
+            const popup = document.getElementById('popup-items');
+            const totalDisplay = document.getElementById('cart-total-dropdown');
+            
+            if (carrinho.length > 0) {
+                popup.innerHTML = '';
+                let soma = 0;
+                carrinho.forEach(item => {
+                    soma += item.preco;
+                    const p = document.createElement('p');
+                    p.classList.add('dropdown-item');
+                    p.style.fontSize = '12px';
+                    p.style.padding = '5px 0';
+                    p.innerHTML = `<span class="name">• ${item.nome}</span>`;
+                    popup.appendChild(p);
+                });
+                totalDisplay.innerText = soma.toFixed(2).replace('.', ',');
+            } else {
+                popup.innerHTML = '<p class="empty-cart">Seu carrinho está vazio, recruta.</p>';
+                totalDisplay.innerText = '0,00';
+            }
+            
+        }
+
+        // 2. Lógica de Login (Mini-Form)
+        document.getElementById('mini-login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-pass').value;
+            const errorBox = document.getElementById('login-error');
+
+            // Validação Simples (Simulação de Bloqueio)
+            if(!email || !pass) {
+                errorBox.innerText = "⚠️ Preencha todos os campos.";
+                return;
+            }
+
+            if(pass.length < 6) {
+                errorBox.innerText = "❌ Senha inválida ou muito curta.";
+                return;
+            }
+
+            // Simula Login com sucesso
+            errorBox.style.color = "#00ff88";
+            errorBox.innerText = "✔️ Acesso autorizado! Carregando...";
+            
+            setTimeout(() => {
+                localStorage.setItem('nts_session', JSON.stringify({user: email, active: true}));
+                location.reload(); 
+            }, 1000);
+        });
+
+        function recoveryProtocol() {
+            const email = document.getElementById('login-email').value;
+            if(!email) {
+                alert("Por favor, digite seu e-mail no campo acima para iniciarmos a recuperação.");
+            } else {
+                alert(`Protocolo de recuperação enviado para: ${email}. Verifique seu terminal de mensagens.`);
+            }
+        }
+
+        // 3. Toggles de Interface
+        function setupToggle(trigger, dropdown) {
+            trigger.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdown.classList.toggle('is-open');
+                // Fecha o outro se estiver aberto
+                if(dropdown === loginDropdown) cartDropdown.classList.remove('is-open');
+                else loginDropdown.classList.remove('is-open');
+            });
+        }
+
+        setupToggle(cartTrigger, cartDropdown);
+        setupToggle(loginTrigger, loginDropdown);
+
+        document.addEventListener('click', () => {
+            cartDropdown.classList.remove('is-open');
+            loginDropdown.classList.remove('is-open');
+        });
+
+        // Bloqueia fechamento ao clicar dentro
+        cartDropdown.addEventListener('click', (e) => e.stopPropagation());
+        loginDropdown.addEventListener('click', (e) => e.stopPropagation());
+
+        // Variáveis globais para o Slider
+        let currentSlide = 0;
+
+        function moveSlide(direction) {
+            const slides = document.querySelectorAll('.nts-slide');
+            const sliderWrapper = document.getElementById('main-slider');
+            if(!sliderWrapper || slides.length === 0) return;
+
+            // Remove classe ativa do atual
+            slides[currentSlide].classList.remove('active');
+            
+            // Calcula o novo índice
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            
+            // O cálculo correto para mover o slider baseado no número de slides
+            // Como cada slide ocupa 100% da largura visual, movemos 100% por slide.
+            const offset = currentSlide * -100; 
+            sliderWrapper.style.transform = `translateX(${offset}%)`;
+            
+            // Adiciona classe ativa no novo
+            slides[currentSlide].classList.add('active');
+        }
+
+        // --- LÓGICA DE BUSCA DINÂMICA (NOVOS REQUISITOS) ---
+        const catalogo = [
+            { nome: "Razer Viper V3 Pro", preco: 50, img: "../Docs/mouse.png" },
+            { nome: "Keychron K2 Pro", preco: 300, img: "../Docs/teclado.png" },
+            { nome: "Samsung Odyssey G9 49\"", preco: 1800, img: "../Docs/monitor.png" },
+            { nome: "Memória RAM RGB 32GB", preco: 250, img: "../Docs/ram.png" },
+            { nome: "Placa Mãe Z790 Pro", preco: 1200, img: "../Docs/mae.png" },
+            { nome: "SSD NVMe 2TB Gen4", preco: 650, img: "../Docs/ssd.png" },
+            { nome: "Luffy Gear 5", preco: 450, img: "../Docs/luffy.png" },
+            { nome: "Pack Mugiwaras", preco: 120, img: "../Docs/mugiwaras.png" },
+            { nome: "Estatueta Premium", preco: 300, img: "../Docs/boneco.png" }
+        ];
+
+        const searchInput = document.getElementById('nts-search');
+        const searchDropdown = document.getElementById('search-results-dropdown');
+
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            searchDropdown.innerHTML = '';
+            
+            if(val.length > 0) {
+                const results = catalogo.filter(item => item.nome.toLowerCase().includes(val));
+                if(results.length > 0) {
+                    results.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'search-result-item';
+                        div.innerHTML = `
+                            <img src="${item.img}" alt="${item.nome}">
+                            <div>
+                                <strong style="color: #00ff88; display: block;">${item.nome}</strong>
+                                <small style="color: #888;">R$ ${item.preco.toFixed(2)}</small>
+                            </div>
+                        `;
+                        div.onclick = () => {
+                            searchInput.value = item.nome;
+                            searchDropdown.style.display = 'none';
+                        };
+                        searchDropdown.appendChild(div);
+                    });
+                    searchDropdown.style.display = 'block';
+                } else {
+                    searchDropdown.style.display = 'none';
+                }
+            } else {
+                searchDropdown.style.display = 'none';
+            }
+        });
+
+        // Fecha busca ao clicar fora
+        document.addEventListener('click', (e) => {
+            if(!searchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+                searchDropdown.style.display = 'none';
+            }
+        });
+
+        window.onload = () => {
+            atualizarInterfaceCarrinho();
+            const session = JSON.parse(localStorage.getItem('nts_session'));
+            if(session && session.active) {
+                document.getElementById('user-status').innerText = "Online";
+                document.getElementById('login-trigger').style.borderColor = "#00ff88";
+            }
+
+            // Inicia o Auto-play (5 segundos)
+            setInterval(() => moveSlide(1), 5000);
+        };
+    </script>
+</body>
+</html>
