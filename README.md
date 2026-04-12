@@ -46,7 +46,7 @@ O site apresenta uma base estrutural sólida (semântica de títulos e botões),
 * `/Docs`: Relatório completo de auditoria em PDF.
 * `/Evidencias`: Capturas de tela dos diagnósticos e evidências de bugs.
 * `/Reports`: Report completo em PDF.
-
+* `/Reports`: Sug-alteralçõesviaDevTools.
 ---
 **Autor:** [Rodrigo Lins](https://github.com/SEU-USUARIO-AQUI)  
 *Analista de QA em transição de carreira | Gestão de TI*
