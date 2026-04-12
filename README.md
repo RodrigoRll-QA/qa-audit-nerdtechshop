@@ -43,9 +43,9 @@ O site apresenta uma base estrutural sólida (semântica de títulos e botões),
 
 ## 📂 Estrutura do Repositório
 * `/Códigos`: Arquivos fonte do projeto (HTML, CSS, JS).
-* `/Docs`: Relatório completo de auditoria em PDF.
+* `/Docs`: Itens usados na estrutura do site.
 * `/Evidencias`: Capturas de tela dos diagnósticos e evidências de bugs.
-* `/Reports`: Report completo em PDF.
+* `/Reports`: Relatório completo de auditoria em PDF.
 * `/Reports`: Sug-alteralçõesviaDevTools.
 ---
 **Autor:** [Rodrigo Lins](https://github.com/SEU-USUARIO-AQUI)  
