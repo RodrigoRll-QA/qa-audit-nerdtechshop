@@ -5,7 +5,7 @@
 ![Main Tool](https://img.shields.io/badge/Tool-Google%20Lighthouse-blue)
 ![Role](https://img.shields.io/badge/Role-QA%20Analyst-blueviolet)
 
-Este projeto consiste em uma plataforma básica de e-commerce criada por mim (somente com o intuito de realizar o exercicio) focada no público entusiasta de tecnologia e hardware. O repositório contém o código-fonte da aplicação e um relatório detalhado de auditoria focado em **Acessibilidade**, **Performance** e **UX**.
+Este projeto consiste em uma plataforma básica de e-commerce criada por mim (somente com o intuito de realizar o exercicio) focada no público entusiasta de tecnologia e hardware. O repositório contém o código-fonte da aplicação e um relatório detalhado de auditoria focado em **Acessibilidade**, **Performance** e **UI**.
 
 ## 📋 Sobre o Projeto
 Meu site apresenta um catálogo de produtos, sistema de busca e banners promocionais. Esta análise foi realizada para identificar gargalos que prejudicam a velocidade de carregamento e impedem o uso por pessoas com necessidades especiais, simulando um cenário real de auditoria de software.
@@ -20,7 +20,7 @@ A auditoria seguiu rigorosos padrões de mercado, utilizando:
 
 ### 1. Performance: Payload de Imagens Crítico
 * **ID:** `Bug-Desempenho001`
-* **Problema:** O site carrega um payload de rede de **8.795 KiB**, devido a imagens em resoluções excessivas e formatos não otimizados.
+* **Problema:** O site carrega um payload de rede alto, devido a imagens em resoluções excessivas e formatos não otimizados.
 * **Impacto:** Lentidão extrema em dispositivos móveis e maior consumo de dados do usuário.
 
 ### 2. Estabilidade Visual: Layout Shift (CLS)
@@ -30,7 +30,7 @@ A auditoria seguiu rigorosos padrões de mercado, utilizando:
 
 ### 3. Acessibilidade e Bloqueio de Renderização
 * **ID:** `Bug-Desempenho002`
-* **Problema:** Recursos de terceiros (Google Fonts/CDN) bloqueando a renderização inicial por **510ms**.
+* **Problema:** Recursos de terceiros (Google Fonts/CDN) bloqueando a renderização inicial por tempo demais.
 * **Sugestão:** Implementação de fontes de fallback e otimização de contraste para conformidade com o nível **WCAG AA**.
 
 ## 📈 Conclusão Técnica
@@ -46,7 +46,8 @@ O site apresenta uma base estrutural sólida (semântica de títulos e botões),
 * `/Docs`: Relatório completo de auditoria em PDF.
 * `/Evidencias`: Capturas de tela dos diagnósticos e evidências de bugs.
 * `/Reports`: Report completo em PDF.
+* `/Sug-alteralçõesviaDevTools`: Algumas sugestões de alterções simples para melhorias. 
 
 ---
-**Autor:** [Rodrigo Lins](https://github.com/SEU-USUARIO-AQUI)  
-*Analista de QA em transição de carreira | Gestão de TI*
+**Autor:** [Rodrigo Lins] 
+*Analista de QA em transição de carreira | EBAC
