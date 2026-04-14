@@ -46,8 +46,8 @@ O site apresenta uma base estrutural sólida (semântica de títulos e botões),
 * `/Códigos`: Arquivos fonte do projeto (HTML, CSS, JS).
 * `/Docs`: Itens usados na estrutura do site.
 * `/Evidencias`: Capturas de tela dos diagnósticos e evidências de bugs.
-* `/Reports`: Report completo em PDF.
-* `/Sug-alteralçõesviaDevTools`: Algumas sugestões de alterções simples para melhorias. 
+* `/Relatório`: Report completo em PDF.
+* `/Sugestões_de_Melhoria`: Algumas sugestões de alterções simples para melhorias. 
 
 ---
 **Autor:** [Rodrigo Lins] 
